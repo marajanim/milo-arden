@@ -79,32 +79,57 @@ add_action('after_setup_theme', 'milo_theme_setup');
 function milo_enqueue_assets()
 {
 
-	/* ── Google Fonts ──────────────────────────────────────── */
-	wp_enqueue_style(
+	/* ── 1. Google Fonts ─────────────────────────────────────
+	 *  Registered separately so child themes / plugins can
+	 *  dequeue without touching main stylesheet.
+	 * ──────────────────────────────────────────────────────── */
+	wp_register_style(
 		'milo-google-fonts',
 		'https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap',
 		array(),
-		null // no version — Google manages cache-busting
+		null // no version — Google manages cache-busting for fonts
 	);
+	wp_enqueue_style('milo-google-fonts');
 
-	/* ── Main stylesheet ───────────────────────────────────── */
+	/* ── 2. WordPress required stylesheet (header only) ──────
+	 *  style.css contains only the theme header comment block.
+	 *  WordPress requires this file to identify the theme;
+	 *  it carries zero visual styles.
+	 * ──────────────────────────────────────────────────────── */
 	wp_enqueue_style(
 		'milo-style',
-		get_stylesheet_uri(), // points to style.css in theme root
-		array('milo-google-fonts'),
+		get_stylesheet_uri(), // → style.css
+		array(),
 		MILO_VERSION
 	);
 
-	/* ── Scroll-reveal script ──────────────────────────────── */
-	wp_enqueue_script(
-		'milo-main',
-		MILO_URI . '/assets/js/main.js',
-		array(), // no dependencies (vanilla JS)
-		MILO_VERSION,
-		true // load in footer
+	/* ── 3. Main theme stylesheet ────────────────────────────
+	 *  All custom CSS: tokens, components, layout, responsive.
+	 *  Depends on Google Fonts so webfonts are declared first.
+	 * ──────────────────────────────────────────────────────── */
+	wp_enqueue_style(
+		'milo-theme',
+		MILO_URI . '/assets/css/theme.css',
+		array('milo-google-fonts'), // dependency chain
+		MILO_VERSION
 	);
+
+	/* ── 4. Theme JavaScript ─────────────────────────────────
+	 *  Vanilla JS — no jQuery or other library dependency.
+	 *  Loaded in the footer after the DOM so no defer needed.
+	 *  Uses MILO_VERSION for automatic cache-busting on deploy.
+	 * ──────────────────────────────────────────────────────── */
+	wp_register_script(
+		'milo-theme-js',
+		MILO_URI . '/assets/js/theme.js',
+		array(), // no dependencies
+		MILO_VERSION,
+		true // load in <footer> — after DOM is parsed
+	);
+	wp_enqueue_script('milo-theme-js');
 }
 add_action('wp_enqueue_scripts', 'milo_enqueue_assets');
+
 
 
 /* =============================================================
