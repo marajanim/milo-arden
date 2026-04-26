@@ -1,0 +1,151 @@
+{
+    "__info": "ACF field values for the Home (Front Page). These are imported as post meta on the page designated as page_on_front. Field group definitions are auto-loaded from acf-json/ directory.",
+    "__target_page": "Home",
+    "__target_template": "front-page.php",
+    "milo_services_quote": "\"The kind of collaborator you build a company around.\"",
+    "milo_services_quote_desc": "Seven years of work across startups, labs, and agencies — shipped, documented, and loved.",
+    "milo_services_quote_name": "Elena Vasquez",
+    "milo_services_quote_role": "Founder, Ledger",
+    "milo_portfolio_items": [
+        {
+            "visual_type": "dashboard",
+            "title": "Ledger",
+            "year": "2025",
+            "description": "A calm revenue dashboard that collapses six SaaS tools into one interface.",
+            "tags": "Product, UI System, Motion",
+            "delay_class": "",
+            "brand_text": "",
+            "brand_accent_letter": ""
+        },
+        {
+            "visual_type": "inbox",
+            "title": "Thread",
+            "year": "2025",
+            "description": "Rebuilt the support inbox around conversation state, not ticket state.",
+            "tags": "Product, Research",
+            "delay_class": "d1",
+            "brand_text": "",
+            "brand_accent_letter": ""
+        },
+        {
+            "visual_type": "editor",
+            "title": "Margin",
+            "year": "2024",
+            "description": "Collaborative annotation for long-form writing. Real-time, typographically correct.",
+            "tags": "Editor, Realtime",
+            "delay_class": "",
+            "brand_text": "",
+            "brand_accent_letter": ""
+        },
+        {
+            "visual_type": "brand",
+            "title": "Halftone",
+            "year": "2024",
+            "description": "A zine-first publishing platform for writers who care about typography.",
+            "tags": "Brand, Type",
+            "delay_class": "d1",
+            "brand_text": "Halftone",
+            "brand_accent_letter": "f"
+        },
+        {
+            "visual_type": "phone",
+            "title": "Fieldnote",
+            "year": "2023",
+            "description": "A voice-first memory aid for people with aphasia, built with Mercy Hospital.",
+            "tags": "Research, A11y",
+            "delay_class": "",
+            "brand_text": "",
+            "brand_accent_letter": ""
+        },
+        {
+            "visual_type": "archive",
+            "title": "",
+            "year": "",
+            "description": "Twenty-something more case studies, from side projects to client work.",
+            "tags": "",
+            "delay_class": "d1",
+            "brand_text": "",
+            "brand_accent_letter": ""
+        }
+    ],
+    "milo_testimonial_items": [
+        {
+            "company": "Ledger",
+            "quote": "Milo has the rare ability to hold both ends of a problem at once. They argue system architecture at lunch and push pixels by dinner. The kind of person you build a company around.",
+            "author_name": "Elena Vasquez",
+            "author_role": "Founder, Ledger",
+            "avatar_variant": "",
+            "delay_class": ""
+        },
+        {
+            "company": "Field Studio",
+            "quote": "Hundreds of collaborators in my career. Milo sits firmly in the top five. Impeccable taste, structural thinking, and they actually ship the work.",
+            "author_name": "Hasan Yüce",
+            "author_role": "Principal, Field Studio",
+            "avatar_variant": "b",
+            "delay_class": "d1"
+        },
+        {
+            "company": "Thread",
+            "quote": "I gave Milo a half-formed brief and an impossible deadline. They returned something better than I could have specified. Then made it faster.",
+            "author_name": "Priya Srinivasan",
+            "author_role": "Head of Product, Thread",
+            "avatar_variant": "c",
+            "delay_class": "d2"
+        }
+    ],
+    "milo_experience_items": [
+        {
+            "company": "Field Studio",
+            "note": "(Independent)",
+            "role": "Design Engineer · Lead",
+            "years": "2023 — Now"
+        },
+        {
+            "company": "Ledger",
+            "note": "",
+            "role": "Founding Designer",
+            "years": "2022 — 2023"
+        },
+        {
+            "company": "Halftone",
+            "note": "(Contract)",
+            "role": "Product & Brand",
+            "years": "2021 — 2022"
+        },
+        {
+            "company": "Mercy Accessibility Lab",
+            "note": "",
+            "role": "Research Fellow",
+            "years": "2020 — 2021"
+        },
+        {
+            "company": "Stripe",
+            "note": "",
+            "role": "Front-End Engineer · Platform",
+            "years": "2018 — 2020"
+        }
+    ],
+    "milo_faq_items": [
+        {
+            "question": "How do you typically work with teams?",
+            "answer": "I work as a one-person senior team — embedded for a stretch (usually six to twelve weeks), with a clear outcome agreed up front. Async by default, weekly sync, Friday demos. Nothing exotic."
+        },
+        {
+            "question": "What does an engagement cost?",
+            "answer": "Pricing is per engagement rather than hourly — typically $18–45k depending on scope and shape. I try to quote tightly and won't take a project I don't think will succeed."
+        },
+        {
+            "question": "Do you work with designers, or only as a solo?",
+            "answer": "Both. I've led small teams, embedded as a +1 in existing ones, and worked as the only designer-engineer in early-stage companies. Happy to flex into what you need."
+        },
+        {
+            "question": "What's your stack?",
+            "answer": "React, TypeScript, and Tailwind for most product work. Figma for design. Framer Motion or GSAP for motion. Comfortable across the stack, and will pick up whatever the team is already using."
+        },
+        {
+            "question": "When can you start?",
+            "answer": "Right now, I have capacity from Q3 2026. I usually book one project at a time so focus doesn't get split. Happy to run a short scoping session before any commitment."
+        }
+    ]
+}

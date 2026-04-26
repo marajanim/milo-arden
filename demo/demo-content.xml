@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Milo Arden — Demo Content (WXR 1.2)
+  WordPress eXtended RSS for one-click demo import.
+  Import via Tools → Import → WordPress, or programmatically.
+-->
+<rss version="2.0"
+     xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/"
+     xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:wp="http://wordpress.org/export/1.2/">
+
+<channel>
+  <title>Milo Arden</title>
+  <link>http://localhost</link>
+  <description>Independent design-engineering studio</description>
+  <language>en-US</language>
+  <wp:wxr_version>1.2</wp:wxr_version>
+  <wp:base_site_url>http://localhost</wp:base_site_url>
+  <wp:base_blog_url>http://localhost</wp:base_blog_url>
+
+  <!-- ── Author ──────────────────────────────────────────── -->
+  <wp:author>
+    <wp:author_id>1</wp:author_id>
+    <wp:author_login>milo</wp:author_login>
+    <wp:author_email>hello@milo.studio</wp:author_email>
+    <wp:author_display_name><![CDATA[Milo Arden]]></wp:author_display_name>
+  </wp:author>
+
+  <!-- ── Categories ──────────────────────────────────────── -->
+  <wp:category>
+    <wp:term_id>2</wp:term_id>
+    <wp:category_nicename>design</wp:category_nicename>
+    <wp:cat_name><![CDATA[Design]]></wp:cat_name>
+  </wp:category>
+  <wp:category>
+    <wp:term_id>3</wp:term_id>
+    <wp:category_nicename>engineering</wp:category_nicename>
+    <wp:cat_name><![CDATA[Engineering]]></wp:cat_name>
+  </wp:category>
+  <wp:category>
+    <wp:term_id>4</wp:term_id>
+    <wp:category_nicename>process</wp:category_nicename>
+    <wp:cat_name><![CDATA[Process]]></wp:cat_name>
+  </wp:category>
+
+  <!-- ── Tags ────────────────────────────────────────────── -->
+  <wp:tag>
+    <wp:term_id>5</wp:term_id>
+    <wp:tag_slug>design-systems</wp:tag_slug>
+    <wp:tag_name><![CDATA[Design Systems]]></wp:tag_name>
+  </wp:tag>
+  <wp:tag>
+    <wp:term_id>6</wp:term_id>
+    <wp:tag_slug>typography</wp:tag_slug>
+    <wp:tag_name><![CDATA[Typography]]></wp:tag_name>
+  </wp:tag>
+  <wp:tag>
+    <wp:term_id>7</wp:term_id>
+    <wp:tag_slug>accessibility</wp:tag_slug>
+    <wp:tag_name><![CDATA[Accessibility]]></wp:tag_name>
+  </wp:tag>
+
+  <!-- ═══════════════════════════════════════════════════════
+       PAGES
+       ═══════════════════════════════════════════════════════ -->
+
+  <!-- ── Home (Front Page) ───────────────────────────────── -->
+  <item>
+    <title>Home</title>
+    <dc:creator>milo</dc:creator>
+    <content:encoded><![CDATA[<!-- Front page content is driven by template-parts + Customizer + ACF -->]]></content:encoded>
+    <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+    <wp:post_id>10</wp:post_id>
+    <wp:post_date>2026-01-01 00:00:00</wp:post_date>
+    <wp:post_date_gmt>2026-01-01 00:00:00</wp:post_date_gmt>
+    <wp:post_type>page</wp:post_type>
+    <wp:status>publish</wp:status>
+    <wp:comment_status>closed</wp:comment_status>
+    <wp:ping_status>closed</wp:ping_status>
+    <wp:post_name>home</wp:post_name>
+    <wp:post_parent>0</wp:post_parent>
+    <wp:menu_order>0</wp:menu_order>
+    <wp:meta_key>_wp_page_template</wp:meta_key>
+    <wp:meta_value>front-page.php</wp:meta_value>
+  </item>
+
+  <!-- ── Blog (Posts Page) ───────────────────────────────── -->
+  <item>
+    <title>Blog</title>
+    <dc:creator>milo</dc:creator>
+    <content:encoded><![CDATA[]]></content:encoded>
+    <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+    <wp:post_id>11</wp:post_id>
+    <wp:post_date>2026-01-01 00:00:00</wp:post_date>
+    <wp:post_date_gmt>2026-01-01 00:00:00</wp:post_date_gmt>
+    <wp:post_type>page</wp:post_type>
+    <wp:status>publish</wp:status>
+    <wp:comment_status>closed</wp:comment_status>
+    <wp:ping_status>closed</wp:ping_status>
+    <wp:post_name>blog</wp:post_name>
+    <wp:post_parent>0</wp:post_parent>
+    <wp:menu_order>0</wp:menu_order>
+  </item>
+
+  <!-- ── About Page ──────────────────────────────────────── -->
+  <item>
+    <title>About</title>
+    <dc:creator>milo</dc:creator>
+    <content:encoded><![CDATA[
+<h2>Design-engineering, from first principles.</h2>
+
+<p>I&rsquo;m Milo Arden &mdash; an independent designer and front-end engineer based in New York. I help founders turn rough product ideas into polished, fast, considered software &mdash; from first sketch to production.</p>
+
+<p>Over the past seven years I&rsquo;ve worked across startups, research labs, and agencies. Every engagement starts with the same question: <em>what&rsquo;s the simplest thing that could actually work?</em></p>
+
+<h3>How I work</h3>
+<p>I operate as a small, senior team of one. Research, design, and engineering live under a single roof. That means less handoff, faster iteration, and software that feels cohesive from the inside out.</p>
+
+<h3>Tools &amp; stack</h3>
+<p>React, TypeScript, and Tailwind for most product work. Figma for design. Framer Motion or GSAP for motion. Comfortable across the stack, and will pick up whatever the team is already using.</p>
+
+<blockquote>
+<p>&ldquo;The best interfaces don&rsquo;t ask to be noticed. They hold the weight of the content they carry.&rdquo;</p>
+</blockquote>
+
+<h3>Values</h3>
+<ul>
+  <li><strong>Clarity over cleverness.</strong> Simple decisions compound into great products.</li>
+  <li><strong>Ship early, refine often.</strong> Feedback is cheaper than speculation.</li>
+  <li><strong>Accessibility is non-negotiable.</strong> Good design works for everyone.</li>
+</ul>
+]]></content:encoded>
+    <excerpt:encoded><![CDATA[Independent designer & front-end engineer helping founders ship calm, considered software.]]></excerpt:encoded>
+    <wp:post_id>12</wp:post_id>
+    <wp:post_date>2026-01-01 00:00:00</wp:post_date>
+    <wp:post_date_gmt>2026-01-01 00:00:00</wp:post_date_gmt>
+    <wp:post_type>page</wp:post_type>
+    <wp:status>publish</wp:status>
+    <wp:comment_status>closed</wp:comment_status>
+    <wp:ping_status>closed</wp:ping_status>
+    <wp:post_name>about</wp:post_name>
+    <wp:post_parent>0</wp:post_parent>
+    <wp:menu_order>1</wp:menu_order>
+  </item>
+
+  <!-- ── Services Page ───────────────────────────────────── -->
+  <item>
+    <title>Services</title>
+    <dc:creator>milo</dc:creator>
+    <content:encoded><![CDATA[
+<h2>What I can help with</h2>
+
+<p>I work as an embedded design-engineer &mdash; usually for six to twelve weeks, with a clear outcome agreed up front. Here&rsquo;s how that typically breaks down.</p>
+
+<h3>Product Design &amp; Systems</h3>
+<p>Design systems, component libraries, and full product flows that stay consistent as teams scale. I build the Figma files <em>and</em> the React components &mdash; no translation layer required.</p>
+
+<h3>Front-End Engineering</h3>
+<p>Production-grade interfaces in React, TypeScript, Next.js, or vanilla HTML/CSS. Pixel-perfect, performant, and accessible out of the box. I write the code I design.</p>
+
+<h3>Brand &amp; Visual Identity</h3>
+<p>For teams that need more than a logo. I create visual systems &mdash; type scales, colour palettes, motion language &mdash; that hold up from pitch deck to product UI.</p>
+
+<h3>Research &amp; Strategy</h3>
+<p>User interviews, competitive audits, and information architecture. I do the thinking before the building, so we ship the right thing the first time.</p>
+
+<h3>Pricing</h3>
+<p>Pricing is per engagement rather than hourly &mdash; typically $18&ndash;45k depending on scope and shape. I try to quote tightly and won&rsquo;t take a project I don&rsquo;t think will succeed.</p>
+]]></content:encoded>
+    <excerpt:encoded><![CDATA[Product design, front-end engineering, brand identity, and research — all from one desk.]]></excerpt:encoded>
+    <wp:post_id>13</wp:post_id>
+    <wp:post_date>2026-01-01 00:00:00</wp:post_date>
+    <wp:post_date_gmt>2026-01-01 00:00:00</wp:post_date_gmt>
+    <wp:post_type>page</wp:post_type>
+    <wp:status>publish</wp:status>
+    <wp:comment_status>closed</wp:comment_status>
+    <wp:ping_status>closed</wp:ping_status>
+    <wp:post_name>services</wp:post_name>
+    <wp:post_parent>0</wp:post_parent>
+    <wp:menu_order>2</wp:menu_order>
+  </item>
+
+  <!-- ── Contact Page ────────────────────────────────────── -->
+  <item>
+    <title>Contact</title>
+    <dc:creator>milo</dc:creator>
+    <content:encoded><![CDATA[
+<h2>Let&rsquo;s build something that matters.</h2>
+
+<p>I&rsquo;m currently booking projects for Q3 2026. Drop a line and I&rsquo;ll reply within a day.</p>
+
+<p><strong>Email:</strong> <a href="mailto:hello@milo.studio">hello@milo.studio</a></p>
+
+<p><strong>Availability:</strong> Open from Q3 2026. I usually book one project at a time so focus doesn&rsquo;t get split.</p>
+
+<p><strong>Process:</strong> We&rsquo;ll start with a short 30-minute scoping call &mdash; no commitment, just clarity. If there&rsquo;s a fit, I&rsquo;ll send a tight proposal within 48 hours.</p>
+
+<ul>
+  <li><a href="#">Book a call</a></li>
+  <li><a href="#">Read.cv</a></li>
+  <li><a href="#">LinkedIn</a></li>
+  <li><a href="#">GitHub</a></li>
+</ul>
+]]></content:encoded>
+    <excerpt:encoded><![CDATA[Get in touch — currently booking projects for Q3 2026.]]></excerpt:encoded>
+    <wp:post_id>14</wp:post_id>
+    <wp:post_date>2026-01-01 00:00:00</wp:post_date>
+    <wp:post_date_gmt>2026-01-01 00:00:00</wp:post_date_gmt>
+    <wp:post_type>page</wp:post_type>
+    <wp:status>publish</wp:status>
+    <wp:comment_status>closed</wp:comment_status>
+    <wp:ping_status>closed</wp:ping_status>
+    <wp:post_name>contact</wp:post_name>
+    <wp:post_parent>0</wp:post_parent>
+    <wp:menu_order>3</wp:menu_order>
+  </item>
+
+  <!-- ═══════════════════════════════════════════════════════
+       BLOG POSTS
+       ═══════════════════════════════════════════════════════ -->
+
+  <!-- ── Post 1 ──────────────────────────────────────────── -->
+  <item>
+    <title>Why I Design in the Browser</title>
+    <dc:creator>milo</dc:creator>
+    <content:encoded><![CDATA[
+<p>There&rsquo;s a common belief that design happens in Figma and engineering happens in VS Code. I&rsquo;ve never worked that way.</p>
+
+<p>When I design in the browser, I&rsquo;m making decisions with real constraints &mdash; viewport widths, font rendering, interaction latency. The result is software that feels considered, because it was considered in the medium it lives in.</p>
+
+<h3>The handoff problem</h3>
+<p>Every handoff is a lossy compression. Designers specify intent; engineers interpret it. The gap between those two things is where quality dies. By working in both mediums simultaneously, I eliminate that gap entirely.</p>
+
+<h3>When Figma still matters</h3>
+<p>I&rsquo;m not anti-Figma. It&rsquo;s excellent for exploration, stakeholder alignment, and design system documentation. But it&rsquo;s a sketch tool, not a delivery tool. The final artifact should always be code.</p>
+
+<blockquote><p>&ldquo;The best interfaces don&rsquo;t ask to be noticed. They hold the weight of the content they carry.&rdquo;</p></blockquote>
+
+<h3>My workflow</h3>
+<ol>
+  <li><strong>Sketch loosely</strong> in Figma (30 minutes, not 3 days)</li>
+  <li><strong>Build a prototype</strong> in code (React + Tailwind)</li>
+  <li><strong>Iterate with real data</strong> until it feels right</li>
+  <li><strong>Ship</strong></li>
+</ol>
+
+<p>This approach isn&rsquo;t for every team. But for small, fast-moving teams that care about craft, it&rsquo;s the fastest path to something great.</p>
+]]></content:encoded>
+    <excerpt:encoded><![CDATA[Design and engineering shouldn't live in separate tools. Here's how designing in the browser produces better software, faster.]]></excerpt:encoded>
+    <wp:post_id>20</wp:post_id>
+    <wp:post_date>2026-04-15 09:00:00</wp:post_date>
+    <wp:post_date_gmt>2026-04-15 03:00:00</wp:post_date_gmt>
+    <wp:post_type>post</wp:post_type>
+    <wp:status>publish</wp:status>
+    <wp:comment_status>open</wp:comment_status>
+    <wp:ping_status>open</wp:ping_status>
+    <wp:post_name>why-i-design-in-the-browser</wp:post_name>
+    <category domain="category" nicename="design"><![CDATA[Design]]></category>
+    <category domain="category" nicename="engineering"><![CDATA[Engineering]]></category>
+    <category domain="post_tag" nicename="design-systems"><![CDATA[Design Systems]]></category>
+  </item>
+
+  <!-- ── Post 2 ──────────────────────────────────────────── -->
+  <item>
+    <title>Building Calm Software</title>
+    <dc:creator>milo</dc:creator>
+    <content:encoded><![CDATA[
+<p>Most software is loud. Notifications, modals, badges, banners &mdash; every element competing for attention. I think there&rsquo;s a better way.</p>
+
+<p>Calm software respects the user&rsquo;s time and attention. It surfaces information when needed, stays quiet when it&rsquo;s not, and never makes you feel behind.</p>
+
+<h3>Principles of calm design</h3>
+<ul>
+  <li><strong>Progressive disclosure.</strong> Show only what&rsquo;s needed at each step.</li>
+  <li><strong>Sensible defaults.</strong> The software should work well out of the box.</li>
+  <li><strong>Quiet confidence.</strong> Good UI doesn&rsquo;t need to explain itself.</li>
+  <li><strong>Reversible actions.</strong> Let people undo instead of asking &ldquo;are you sure?&rdquo;</li>
+</ul>
+
+<h3>Case study: Ledger</h3>
+<p>When I redesigned Ledger&rsquo;s revenue dashboard, the original had 47 visible metrics on the home screen. We reduced it to 4 &mdash; with the rest available one click away. Usage went up 3x.</p>
+
+<p>The lesson: removing things is harder than adding them, and it&rsquo;s almost always the right call.</p>
+]]></content:encoded>
+    <excerpt:encoded><![CDATA[Most software is loud. Here's how to design interfaces that respect the user's time and attention.]]></excerpt:encoded>
+    <wp:post_id>21</wp:post_id>
+    <wp:post_date>2026-04-08 09:00:00</wp:post_date>
+    <wp:post_date_gmt>2026-04-08 03:00:00</wp:post_date_gmt>
+    <wp:post_type>post</wp:post_type>
+    <wp:status>publish</wp:status>
+    <wp:comment_status>open</wp:comment_status>
+    <wp:ping_status>open</wp:ping_status>
+    <wp:post_name>building-calm-software</wp:post_name>
+    <category domain="category" nicename="design"><![CDATA[Design]]></category>
+    <category domain="category" nicename="process"><![CDATA[Process]]></category>
+  </item>
+
+  <!-- ── Post 3 ──────────────────────────────────────────── -->
+  <item>
+    <title>A Practical Guide to Design Tokens</title>
+    <dc:creator>milo</dc:creator>
+    <content:encoded><![CDATA[
+<p>Design tokens are the atoms of a design system &mdash; the smallest decisions (colours, spacing, type sizes) stored as platform-agnostic data. Here&rsquo;s how I set them up on every project.</p>
+
+<h3>What are design tokens?</h3>
+<p>A design token is a named value: <code>--color-ink: #0A0A0A</code>. It&rsquo;s not the colour itself &mdash; it&rsquo;s the <em>decision</em> to use that colour in a specific context.</p>
+
+<h3>My token structure</h3>
+<pre><code>:root {
+  /* Palette */
+  --green-dark:   #0E2B1A;
+  --green-accent: #C6F25D;
+  --paper:        #F5F2EA;
+  --ink:          #0A0A0A;
+  --muted:        #6A6860;
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 32px;
+  --space-xl: 64px;
+
+  /* Typography */
+  --sans: 'Geist', sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}</code></pre>
+
+<h3>Why bother?</h3>
+<ul>
+  <li><strong>Consistency:</strong> Every component references the same source of truth.</li>
+  <li><strong>Theming:</strong> Swap one file and the entire product changes.</li>
+  <li><strong>Onboarding:</strong> New engineers can read the tokens and understand the visual language in minutes.</li>
+</ul>
+
+<p>Tokens aren&rsquo;t glamorous, but they&rsquo;re the foundation everything else sits on. Get them right early.</p>
+]]></content:encoded>
+    <excerpt:encoded><![CDATA[Design tokens are the smallest decisions in a design system. Here's how I structure them for every project.]]></excerpt:encoded>
+    <wp:post_id>22</wp:post_id>
+    <wp:post_date>2026-03-25 09:00:00</wp:post_date>
+    <wp:post_date_gmt>2026-03-25 03:00:00</wp:post_date_gmt>
+    <wp:post_type>post</wp:post_type>
+    <wp:status>publish</wp:status>
+    <wp:comment_status>open</wp:comment_status>
+    <wp:ping_status>open</wp:ping_status>
+    <wp:post_name>practical-guide-to-design-tokens</wp:post_name>
+    <category domain="category" nicename="engineering"><![CDATA[Engineering]]></category>
+    <category domain="post_tag" nicename="design-systems"><![CDATA[Design Systems]]></category>
+    <category domain="post_tag" nicename="typography"><![CDATA[Typography]]></category>
+  </item>
+
+  <!-- ── Post 4 ──────────────────────────────────────────── -->
+  <item>
+    <title>Accessibility Is a Design Skill</title>
+    <dc:creator>milo</dc:creator>
+    <content:encoded><![CDATA[
+<p>Accessibility isn&rsquo;t a checklist you run at the end of a project. It&rsquo;s a design skill &mdash; a lens you apply from the very first sketch.</p>
+
+<h3>Common misconceptions</h3>
+<ul>
+  <li><strong>&ldquo;Accessible design looks boring.&rdquo;</strong> It doesn&rsquo;t. Constraints breed creativity.</li>
+  <li><strong>&ldquo;It&rsquo;s only for screen readers.&rdquo;</strong> Accessibility benefits everyone: keyboard users, people in bright sunlight, users with slow connections.</li>
+  <li><strong>&ldquo;We&rsquo;ll add it later.&rdquo;</strong> Retrofitting accessibility is 10x harder than building it in from the start.</li>
+</ul>
+
+<h3>My accessibility baseline</h3>
+<ol>
+  <li>Semantic HTML first. <code>&lt;button&gt;</code>, not <code>&lt;div onclick&gt;</code>.</li>
+  <li>Colour contrast meets WCAG AA (4.5:1 for body text).</li>
+  <li>All interactive elements are keyboard-navigable.</li>
+  <li>Images have meaningful alt text (or <code>aria-hidden</code> if decorative).</li>
+  <li><code>prefers-reduced-motion</code> is respected for all animations.</li>
+</ol>
+
+<h3>The Fieldnote project</h3>
+<p>My most rewarding work was Fieldnote &mdash; a voice-first memory aid for people with aphasia, built with Mercy Hospital. It taught me that the users who need the most consideration are often the ones who get the least.</p>
+
+<p>Every interface you build is used by someone having a harder day than you. Design for them.</p>
+]]></content:encoded>
+    <excerpt:encoded><![CDATA[Accessibility isn't a checklist. It's a design skill that benefits everyone.]]></excerpt:encoded>
+    <wp:post_id>23</wp:post_id>
+    <wp:post_date>2026-03-10 09:00:00</wp:post_date>
+    <wp:post_date_gmt>2026-03-10 03:00:00</wp:post_date_gmt>
+    <wp:post_type>post</wp:post_type>
+    <wp:status>publish</wp:status>
+    <wp:comment_status>open</wp:comment_status>
+    <wp:ping_status>open</wp:ping_status>
+    <wp:post_name>accessibility-is-a-design-skill</wp:post_name>
+    <category domain="category" nicename="design"><![CDATA[Design]]></category>
+    <category domain="category" nicename="process"><![CDATA[Process]]></category>
+    <category domain="post_tag" nicename="accessibility"><![CDATA[Accessibility]]></category>
+  </item>
+
+  <!-- ═══════════════════════════════════════════════════════
+       NAVIGATION MENUS
+       ═══════════════════════════════════════════════════════ -->
+
+  <!-- ── Primary Menu ────────────────────────────────────── -->
+  <item>
+    <title>Primary Menu</title>
+    <wp:post_id>100</wp:post_id>
+    <wp:post_type>nav_menu_item</wp:post_type>
+    <wp:status>publish</wp:status>
+    <wp:post_name>work</wp:post_name>
+    <wp:postmeta><wp:meta_key>_menu_item_type</wp:meta_key><wp:meta_value>custom</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_url</wp:meta_key><wp:meta_value>#work</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_menu_item_parent</wp:meta_key><wp:meta_value>0</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_object</wp:meta_key><wp:meta_value>custom</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_object_id</wp:meta_key><wp:meta_value>100</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_target</wp:meta_key><wp:meta_value></wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_classes</wp:meta_key><wp:meta_value>a:0:{}</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_xfn</wp:meta_key><wp:meta_value></wp:meta_value></wp:postmeta>
+    <category domain="nav_menu" nicename="primary-nav"><![CDATA[Primary Nav]]></category>
+  </item>
+
+  <item>
+    <title>Process</title>
+    <wp:post_id>101</wp:post_id>
+    <wp:post_type>nav_menu_item</wp:post_type>
+    <wp:status>publish</wp:status>
+    <wp:post_name>process</wp:post_name>
+    <wp:postmeta><wp:meta_key>_menu_item_type</wp:meta_key><wp:meta_value>custom</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_url</wp:meta_key><wp:meta_value>#process</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_menu_item_parent</wp:meta_key><wp:meta_value>0</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_object</wp:meta_key><wp:meta_value>custom</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_object_id</wp:meta_key><wp:meta_value>101</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_target</wp:meta_key><wp:meta_value></wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_classes</wp:meta_key><wp:meta_value>a:0:{}</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_xfn</wp:meta_key><wp:meta_value></wp:meta_value></wp:postmeta>
+    <category domain="nav_menu" nicename="primary-nav"><![CDATA[Primary Nav]]></category>
+  </item>
+
+  <item>
+    <title>Words</title>
+    <wp:post_id>102</wp:post_id>
+    <wp:post_type>nav_menu_item</wp:post_type>
+    <wp:status>publish</wp:status>
+    <wp:post_name>words</wp:post_name>
+    <wp:postmeta><wp:meta_key>_menu_item_type</wp:meta_key><wp:meta_value>custom</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_url</wp:meta_key><wp:meta_value>#words</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_menu_item_parent</wp:meta_key><wp:meta_value>0</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_object</wp:meta_key><wp:meta_value>custom</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_object_id</wp:meta_key><wp:meta_value>102</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_target</wp:meta_key><wp:meta_value></wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_classes</wp:meta_key><wp:meta_value>a:0:{}</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_xfn</wp:meta_key><wp:meta_value></wp:meta_value></wp:postmeta>
+    <category domain="nav_menu" nicename="primary-nav"><![CDATA[Primary Nav]]></category>
+  </item>
+
+  <item>
+    <title>FAQ</title>
+    <wp:post_id>103</wp:post_id>
+    <wp:post_type>nav_menu_item</wp:post_type>
+    <wp:status>publish</wp:status>
+    <wp:post_name>faq</wp:post_name>
+    <wp:postmeta><wp:meta_key>_menu_item_type</wp:meta_key><wp:meta_value>custom</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_url</wp:meta_key><wp:meta_value>#faq</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_menu_item_parent</wp:meta_key><wp:meta_value>0</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_object</wp:meta_key><wp:meta_value>custom</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_object_id</wp:meta_key><wp:meta_value>103</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_target</wp:meta_key><wp:meta_value></wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_classes</wp:meta_key><wp:meta_value>a:0:{}</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_xfn</wp:meta_key><wp:meta_value></wp:meta_value></wp:postmeta>
+    <category domain="nav_menu" nicename="primary-nav"><![CDATA[Primary Nav]]></category>
+  </item>
+
+  <!-- ── Footer Menu — Work Column ───────────────────────── -->
+  <item>
+    <title>Case Studies</title>
+    <wp:post_id>110</wp:post_id>
+    <wp:post_type>nav_menu_item</wp:post_type>
+    <wp:status>publish</wp:status>
+    <wp:post_name>case-studies</wp:post_name>
+    <wp:postmeta><wp:meta_key>_menu_item_type</wp:meta_key><wp:meta_value>custom</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_url</wp:meta_key><wp:meta_value>#work</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_menu_item_parent</wp:meta_key><wp:meta_value>0</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_object</wp:meta_key><wp:meta_value>custom</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_object_id</wp:meta_key><wp:meta_value>110</wp:meta_value></wp:postmeta>
+    <category domain="nav_menu" nicename="footer-work"><![CDATA[Footer Work]]></category>
+  </item>
+
+  <item>
+    <title>Process</title>
+    <wp:post_id>111</wp:post_id>
+    <wp:post_type>nav_menu_item</wp:post_type>
+    <wp:status>publish</wp:status>
+    <wp:post_name>footer-process</wp:post_name>
+    <wp:postmeta><wp:meta_key>_menu_item_type</wp:meta_key><wp:meta_value>custom</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_url</wp:meta_key><wp:meta_value>#process</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_menu_item_parent</wp:meta_key><wp:meta_value>0</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_object</wp:meta_key><wp:meta_value>custom</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_object_id</wp:meta_key><wp:meta_value>111</wp:meta_value></wp:postmeta>
+    <category domain="nav_menu" nicename="footer-work"><![CDATA[Footer Work]]></category>
+  </item>
+
+  <item>
+    <title>Testimonials</title>
+    <wp:post_id>112</wp:post_id>
+    <wp:post_type>nav_menu_item</wp:post_type>
+    <wp:status>publish</wp:status>
+    <wp:post_name>footer-testimonials</wp:post_name>
+    <wp:postmeta><wp:meta_key>_menu_item_type</wp:meta_key><wp:meta_value>custom</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_url</wp:meta_key><wp:meta_value>#words</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_menu_item_parent</wp:meta_key><wp:meta_value>0</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_object</wp:meta_key><wp:meta_value>custom</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_object_id</wp:meta_key><wp:meta_value>112</wp:meta_value></wp:postmeta>
+    <category domain="nav_menu" nicename="footer-work"><![CDATA[Footer Work]]></category>
+  </item>
+
+  <item>
+    <title>FAQ</title>
+    <wp:post_id>113</wp:post_id>
+    <wp:post_type>nav_menu_item</wp:post_type>
+    <wp:status>publish</wp:status>
+    <wp:post_name>footer-faq</wp:post_name>
+    <wp:postmeta><wp:meta_key>_menu_item_type</wp:meta_key><wp:meta_value>custom</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_url</wp:meta_key><wp:meta_value>#faq</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_menu_item_parent</wp:meta_key><wp:meta_value>0</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_object</wp:meta_key><wp:meta_value>custom</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_object_id</wp:meta_key><wp:meta_value>113</wp:meta_value></wp:postmeta>
+    <category domain="nav_menu" nicename="footer-work"><![CDATA[Footer Work]]></category>
+  </item>
+
+  <!-- ── Footer Menu — Contact Column ────────────────────── -->
+  <item>
+    <title>hello@milo.studio</title>
+    <wp:post_id>120</wp:post_id>
+    <wp:post_type>nav_menu_item</wp:post_type>
+    <wp:status>publish</wp:status>
+    <wp:post_name>footer-email</wp:post_name>
+    <wp:postmeta><wp:meta_key>_menu_item_type</wp:meta_key><wp:meta_value>custom</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_url</wp:meta_key><wp:meta_value>mailto:hello@milo.studio</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_menu_item_parent</wp:meta_key><wp:meta_value>0</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_object</wp:meta_key><wp:meta_value>custom</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_object_id</wp:meta_key><wp:meta_value>120</wp:meta_value></wp:postmeta>
+    <category domain="nav_menu" nicename="footer-contact"><![CDATA[Footer Contact]]></category>
+  </item>
+
+  <item>
+    <title>Book a call</title>
+    <wp:post_id>121</wp:post_id>
+    <wp:post_type>nav_menu_item</wp:post_type>
+    <wp:status>publish</wp:status>
+    <wp:post_name>footer-book-call</wp:post_name>
+    <wp:postmeta><wp:meta_key>_menu_item_type</wp:meta_key><wp:meta_value>custom</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_url</wp:meta_key><wp:meta_value>#contact</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_menu_item_parent</wp:meta_key><wp:meta_value>0</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_object</wp:meta_key><wp:meta_value>custom</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_object_id</wp:meta_key><wp:meta_value>121</wp:meta_value></wp:postmeta>
+    <category domain="nav_menu" nicename="footer-contact"><![CDATA[Footer Contact]]></category>
+  </item>
+
+  <item>
+    <title>Signal</title>
+    <wp:post_id>122</wp:post_id>
+    <wp:post_type>nav_menu_item</wp:post_type>
+    <wp:status>publish</wp:status>
+    <wp:post_name>footer-signal</wp:post_name>
+    <wp:postmeta><wp:meta_key>_menu_item_type</wp:meta_key><wp:meta_value>custom</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_url</wp:meta_key><wp:meta_value>#</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_menu_item_parent</wp:meta_key><wp:meta_value>0</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_object</wp:meta_key><wp:meta_value>custom</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_object_id</wp:meta_key><wp:meta_value>122</wp:meta_value></wp:postmeta>
+    <category domain="nav_menu" nicename="footer-contact"><![CDATA[Footer Contact]]></category>
+  </item>
+
+  <!-- ── Footer Menu — Elsewhere Column ──────────────────── -->
+  <item>
+    <title>Read.cv</title>
+    <wp:post_id>130</wp:post_id>
+    <wp:post_type>nav_menu_item</wp:post_type>
+    <wp:status>publish</wp:status>
+    <wp:post_name>footer-readcv</wp:post_name>
+    <wp:postmeta><wp:meta_key>_menu_item_type</wp:meta_key><wp:meta_value>custom</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_url</wp:meta_key><wp:meta_value>#</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_menu_item_parent</wp:meta_key><wp:meta_value>0</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_object</wp:meta_key><wp:meta_value>custom</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_object_id</wp:meta_key><wp:meta_value>130</wp:meta_value></wp:postmeta>
+    <category domain="nav_menu" nicename="footer-elsewhere"><![CDATA[Footer Elsewhere]]></category>
+  </item>
+
+  <item>
+    <title>LinkedIn</title>
+    <wp:post_id>131</wp:post_id>
+    <wp:post_type>nav_menu_item</wp:post_type>
+    <wp:status>publish</wp:status>
+    <wp:post_name>footer-linkedin</wp:post_name>
+    <wp:postmeta><wp:meta_key>_menu_item_type</wp:meta_key><wp:meta_value>custom</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_url</wp:meta_key><wp:meta_value>#</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_menu_item_parent</wp:meta_key><wp:meta_value>0</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_object</wp:meta_key><wp:meta_value>custom</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_object_id</wp:meta_key><wp:meta_value>131</wp:meta_value></wp:postmeta>
+    <category domain="nav_menu" nicename="footer-elsewhere"><![CDATA[Footer Elsewhere]]></category>
+  </item>
+
+  <item>
+    <title>Github</title>
+    <wp:post_id>132</wp:post_id>
+    <wp:post_type>nav_menu_item</wp:post_type>
+    <wp:status>publish</wp:status>
+    <wp:post_name>footer-github</wp:post_name>
+    <wp:postmeta><wp:meta_key>_menu_item_type</wp:meta_key><wp:meta_value>custom</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_url</wp:meta_key><wp:meta_value>#</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_menu_item_parent</wp:meta_key><wp:meta_value>0</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_object</wp:meta_key><wp:meta_value>custom</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_object_id</wp:meta_key><wp:meta_value>132</wp:meta_value></wp:postmeta>
+    <category domain="nav_menu" nicename="footer-elsewhere"><![CDATA[Footer Elsewhere]]></category>
+  </item>
+
+  <item>
+    <title>Are.na</title>
+    <wp:post_id>133</wp:post_id>
+    <wp:post_type>nav_menu_item</wp:post_type>
+    <wp:status>publish</wp:status>
+    <wp:post_name>footer-arena</wp:post_name>
+    <wp:postmeta><wp:meta_key>_menu_item_type</wp:meta_key><wp:meta_value>custom</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_url</wp:meta_key><wp:meta_value>#</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_menu_item_parent</wp:meta_key><wp:meta_value>0</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_object</wp:meta_key><wp:meta_value>custom</wp:meta_value></wp:postmeta>
+    <wp:postmeta><wp:meta_key>_menu_item_object_id</wp:meta_key><wp:meta_value>133</wp:meta_value></wp:postmeta>
+    <category domain="nav_menu" nicename="footer-elsewhere"><![CDATA[Footer Elsewhere]]></category>
+  </item>
+
+</channel>
+</rss>

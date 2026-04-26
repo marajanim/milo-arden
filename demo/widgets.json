@@ -1,0 +1,33 @@
+{
+    "sidebar-main": {
+        "search-1": {
+            "title": ""
+        },
+        "recent-posts-1": {
+            "title": "Recent Posts",
+            "number": 5
+        },
+        "categories-1": {
+            "title": "Categories",
+            "count": 1,
+            "hierarchical": 0,
+            "dropdown": 0
+        }
+    },
+    "footer-col-1": {
+        "text-1": {
+            "title": "Work",
+            "text": "<ul>\n<li><a href=\"#work\">Case studies</a></li>\n<li><a href=\"#process\">Process</a></li>\n<li><a href=\"#words\">Testimonials</a></li>\n<li><a href=\"#faq\">FAQ</a></li>\n</ul>",
+            "filter": true,
+            "visual": true
+        }
+    },
+    "footer-col-2": {
+        "text-2": {
+            "title": "Contact",
+            "text": "<ul>\n<li><a href=\"mailto:hello@milo.studio\">hello@milo.studio</a></li>\n<li><a href=\"#contact\">Book a call</a></li>\n<li><a href=\"#\">Signal</a></li>\n</ul>",
+            "filter": true,
+            "visual": true
+        }
+    }
+}
