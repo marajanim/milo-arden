@@ -327,52 +327,13 @@ class Milo_Demo_Importer
             return array('log' => array(array('type' => 'err', 'msg' => __('demo-content.xml not found.', 'milo-arden'))), 'ids' => array(), 'error' => true);
         }
 
-        // Ensure WP Importer is available
-        if (!class_exists('WP_Import')) {
-            $log[] = array('type' => 'info', 'msg' => __('WordPress Importer not found. Attempting install…', 'milo-arden'));
+        $log[] = array('type' => 'info', 'msg' => __('Importing XML content…', 'milo-arden'));
 
-            $installed = $this->install_wp_importer();
-            if (is_wp_error($installed)) {
-                $log[] = array('type' => 'err', 'msg' => sprintf(__('Could not install WP Importer: %s', 'milo-arden'), $installed->get_error_message()));
-                $log[] = array('type' => 'info', 'msg' => __('Falling back to manual XML parsing…', 'milo-arden'));
-
-                // Fallback: manual parse
-                $manual = $this->manual_import_xml($file);
-                return array('log' => array_merge($log, $manual['log']), 'ids' => $manual['ids'], 'error' => $manual['error']);
-            }
-            $log[] = array('type' => 'ok', 'msg' => __('WordPress Importer installed and loaded.', 'milo-arden'));
-        }
-
-        // Run WP_Import
-        if (class_exists('WP_Import')) {
-            $log[] = array('type' => 'info', 'msg' => __('Importing XML content…', 'milo-arden'));
-
-            $importer = new WP_Import();
-            $importer->fetch_attachments = true;
-
-            // Capture output
-            ob_start();
-            $importer->import($file);
-            $output = ob_get_clean();
-
-            // Collect imported post IDs
-            if (!empty($importer->processed_posts)) {
-                $ids = array_merge($ids, array_values($importer->processed_posts));
-            }
-            if (!empty($importer->processed_terms)) {
-            // store term IDs separately for undo
-            }
-
-            $count = count($ids);
-            $log[] = array('type' => 'ok', 'msg' => sprintf(__('XML import complete — %d items imported.', 'milo-arden'), $count));
-        }
-        else {
-            // use manual fallback
-            $manual = $this->manual_import_xml($file);
-            $log = array_merge($log, $manual['log']);
-            $ids = $manual['ids'];
-            $error = $manual['error'];
-        }
+        // Use the built-in manual parser (self-contained, no plugin dependencies)
+        $result = $this->manual_import_xml($file);
+        $log = array_merge($log, $result['log']);
+        $ids = $result['ids'];
+        $error = $result['error'];
 
         return array('log' => $log, 'ids' => $ids, 'error' => $error);
     }
