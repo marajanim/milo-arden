@@ -19,6 +19,9 @@ define('MILO_VERSION', '1.0.0');
 define('MILO_DIR', get_template_directory());
 define('MILO_URI', get_template_directory_uri());
 
+/* Load inc files */
+require_once MILO_DIR . '/inc/class-nav-walker.php';
+
 
 /* =============================================================
  2. THEME SETUP
@@ -62,15 +65,75 @@ function milo_theme_setup()
 			array('name' => __('Muted', 'milo-arden'), 'slug' => 'muted', 'color' => '#6A6860'),
 	));
 
-	/* Register nav menu locations */
+	/* Register nav menu locations
+	 * 'primary'        — hero floating nav (also aliased as 'primary-menu')
+	 * 'footer-menu'    — combined footer nav alias (also aliased as individual columns)
+	 * 'footer-work'    — footer Work column
+	 * 'footer-contact' — footer Contact column
+	 * 'footer-elsewhere' — footer Elsewhere / social column
+	 */
 	register_nav_menus(array(
-		'primary' => __('Primary Navigation (Hero)', 'milo-arden'),
+		'primary' => __('Primary Navigation', 'milo-arden'),
+		'primary-menu' => __('Primary Menu (alias)', 'milo-arden'),
+		'footer-menu' => __('Footer Menu (combined)', 'milo-arden'),
 		'footer-work' => __('Footer — Work', 'milo-arden'),
 		'footer-contact' => __('Footer — Contact', 'milo-arden'),
 		'footer-elsewhere' => __('Footer — Elsewhere', 'milo-arden'),
 	));
 }
 add_action('after_setup_theme', 'milo_theme_setup');
+
+
+/* =============================================================
+ 2b. WIDGET AREAS (SIDEBARS)
+ ============================================================= */
+function milo_register_sidebars()
+{
+
+	/**
+	 * Optional sidebar — shows on single posts/pages if theme adds
+	 * a sidebar.php and dynamic_sidebar( 'sidebar-main' ) call.
+	 */
+	register_sidebar(array(
+		'id' => 'sidebar-main',
+		'name' => __('Main Sidebar', 'milo-arden'),
+		'description' => __('Widgets shown in the optional page/post sidebar.', 'milo-arden'),
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget' => '</div>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
+	));
+
+	/**
+	 * Footer widget area — column 1.
+	 * Renders inside the first .footer-col div in footer.php.
+	 * Falls back to the static Work links if no widgets assigned.
+	 */
+	register_sidebar(array(
+		'id' => 'footer-col-1',
+		'name' => __('Footer Column 1', 'milo-arden'),
+		'description' => __('Widgets in footer column 1 (Work). Falls back to static nav links.', 'milo-arden'),
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget' => '</div>',
+		'before_title' => '<h4>',
+		'after_title' => '</h4>',
+	));
+
+	/**
+	 * Footer widget area — column 2.
+	 * Renders inside the second .footer-col div in footer.php.
+	 */
+	register_sidebar(array(
+		'id' => 'footer-col-2',
+		'name' => __('Footer Column 2', 'milo-arden'),
+		'description' => __('Widgets in footer column 2 (Contact). Falls back to static nav links.', 'milo-arden'),
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget' => '</div>',
+		'before_title' => '<h4>',
+		'after_title' => '</h4>',
+	));
+}
+add_action('widgets_init', 'milo_register_sidebars');
 
 
 /* =============================================================
