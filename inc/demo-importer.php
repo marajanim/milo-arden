@@ -426,7 +426,13 @@ class Milo_Demo_Importer
             return $activate;
         }
 
-        // Load the class
+        // Load the base WP_Importer class (WP_Import extends it)
+        $importer_base = ABSPATH . 'wp-admin/includes/class-wp-importer.php';
+        if (file_exists($importer_base)) {
+            require_once $importer_base;
+        }
+
+        // Load the plugin
         $plugin_file = WP_PLUGIN_DIR . '/wordpress-importer/wordpress-importer.php';
         if (file_exists($plugin_file)) {
             require_once $plugin_file;
