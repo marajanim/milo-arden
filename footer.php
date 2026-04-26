@@ -19,8 +19,13 @@
       <!-- Brand column -->
       <div class="footer-brand">
         <a href="<?php echo esc_url(home_url('/')); ?>" class="f-logo" rel="home">
-          <?php if (has_custom_logo()): ?>
-            <?php the_custom_logo(); ?>
+          <?php
+$custom_logo_id = get_theme_mod('custom_logo');
+if ($custom_logo_id): ?>
+              <?php echo wp_get_attachment_image($custom_logo_id, 'thumbnail', false, array(
+    'class' => 'custom-logo',
+    'alt' => get_bloginfo('name'),
+  )); ?>
           <?php
 else: ?>
             <div class="mark" aria-hidden="true">m</div>

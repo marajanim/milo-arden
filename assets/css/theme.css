@@ -227,6 +227,13 @@ nav .logo .mark {
     font-size: 14px;
 }
 
+nav .logo .custom-logo {
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
 /* Primary nav menu (wp_nav_menu output) */
 nav .nav-center {
     display: flex;
@@ -2386,5 +2393,148 @@ nav .nav-cta .dot {
 
     .widget-area {
         padding: 0 20px 60px;
+    }
+}
+
+/* =============================================================
+   FOOTER
+   ============================================================= */
+.footer {
+    background: var(--green-dark);
+    color: rgba(255, 255, 255, 0.7);
+    padding: 80px 40px 30px;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-brand .f-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 16px;
+}
+
+.footer-brand .f-logo .mark {
+    width: 26px;
+    height: 26px;
+    background: var(--green-accent);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink);
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.footer-brand .f-logo .custom-logo {
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+.footer-brand p {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.footer-col h4,
+.footer-col .widget-title {
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 8px;
+}
+
+.footer-col ul li a {
+    color: rgba(255, 255, 255, 0.5);
+    transition: color 0.2s ease;
+}
+
+.footer-col ul li a:hover {
+    color: var(--green-accent);
+}
+
+.footer-bottom {
+    max-width: 1200px;
+    margin: 60px auto 0;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.footer-bottom a {
+    color: rgba(255, 255, 255, 0.4);
+    transition: color 0.2s ease;
+}
+
+.footer-bottom a:hover {
+    color: var(--green-accent);
+}
+
+.footer-bottom .legal {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-social {
+    display: flex;
+    gap: 16px;
+}
+
+.footer-social a {
+    color: rgba(255, 255, 255, 0.4);
+    transition: color 0.2s ease;
+}
+
+.footer-social a:hover {
+    color: var(--green-accent);
+}
+
+@media (max-width: 768px) {
+    .footer {
+        padding: 60px 20px 20px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+
+    .footer-brand {
+        grid-column: span 2;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
     }
 }

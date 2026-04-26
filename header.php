@@ -27,12 +27,17 @@
 
     <!-- ── Logo ──────────────────────────────────────────────── -->
     <a href="<?php echo esc_url(home_url('/')); ?>" class="logo" rel="home">
-      <?php if (has_custom_logo()): ?>
-        <?php the_custom_logo(); ?>
+      <?php
+$custom_logo_id = get_theme_mod('custom_logo');
+if ($custom_logo_id): ?>
+          <?php echo wp_get_attachment_image($custom_logo_id, 'thumbnail', false, array(
+    'class' => 'custom-logo',
+    'alt' => get_bloginfo('name'),
+  )); ?>
       <?php
 else: ?>
-        <div class="mark" aria-hidden="true">m</div>
-        <span><?php bloginfo('name'); ?></span>
+          <div class="mark" aria-hidden="true">m</div>
+          <span><?php bloginfo('name'); ?></span>
       <?php
 endif; ?>
     </a>
@@ -64,7 +69,8 @@ wp_nav_menu(array(
  * Fallback for the primary menu when no menu is assigned in WP Admin.
  * Outputs a plain <ul> of anchor links matching the original design.
  */
-if (!function_exists('milo_nav_fallback')):  function milo_nav_fallback()
+if (!function_exists('milo_nav_fallback')):
+  function milo_nav_fallback()
   {
     $links = array(
       '#work' => __('Work', 'milo-arden'),
@@ -76,5 +82,6 @@ if (!function_exists('milo_nav_fallback')):  function milo_nav_fallback()
     foreach ($links as $href => $label) {
       printf('<li><a href="%s">%s</a></li>', esc_url($href), esc_html($label));
     }
-    echo '</ul>';  }
+    echo '</ul>';
+  }
 endif;
