@@ -131,6 +131,58 @@ function milo_enqueue_assets()
 add_action('wp_enqueue_scripts', 'milo_enqueue_assets');
 
 
+/* =============================================================
+ 3b. ACF — LOCAL JSON SUPPORT
+ Saves / loads ACF field groups from the theme's acf-json/ dir.
+ If ACF is not installed, everything degrades gracefully.
+ ============================================================= */
+
+/** Tell ACF where to save field group JSON on export */
+function milo_acf_json_save_path($path)
+{
+	return MILO_DIR . '/acf-json';
+}
+add_filter('acf/settings/save_json', 'milo_acf_json_save_path');
+
+/** Tell ACF where to load field group JSON from */
+function milo_acf_json_load_paths($paths)
+{
+	// Remove the default path (if any)
+	unset($paths[0]);
+	$paths[] = MILO_DIR . '/acf-json';
+	return $paths;
+}
+add_filter('acf/settings/load_json', 'milo_acf_json_load_paths');
+
+/**
+ * Safe ACF field getter — returns $fallback when ACF is not active
+ * or when the field is empty.
+ *
+ * @param string $field_name ACF field name.
+ * @param mixed  $fallback   Value returned when field is empty or ACF absent.
+ * @param mixed  $post_id    Optional. Post ID, 'option', etc. Default false (current post).
+ * @return mixed
+ */
+function milo_acf($field_name, $fallback = '', $post_id = false)
+{
+	if (!function_exists('get_field')) {
+		return $fallback;
+	}
+	$value = get_field($field_name, $post_id);
+	return (!empty($value)) ? $value : $fallback;
+}
+
+/**
+ * Safe ACF repeater check — returns false when ACF is not active.
+ */
+function milo_acf_has_rows($field_name, $post_id = false)
+{
+	if (!function_exists('have_rows')) {
+		return false;
+	}
+	return have_rows($field_name, $post_id);
+}
+
 
 /* =============================================================
  4. CUSTOMIZER — THEME OPTIONS

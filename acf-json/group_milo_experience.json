@@ -1,0 +1,68 @@
+{
+    "key": "group_milo_experience",
+    "title": "Milo — Experience / Background",
+    "fields": [
+        {
+            "key": "field_milo_experience_items",
+            "label": "Experience Rows",
+            "name": "milo_experience_items",
+            "type": "repeater",
+            "instructions": "Add or reorder work history rows. Leave empty to use built-in defaults.",
+            "min": 0,
+            "max": 20,
+            "layout": "table",
+            "button_label": "Add Position",
+            "sub_fields": [
+                {
+                    "key": "field_milo_experience_company",
+                    "label": "Company",
+                    "name": "company",
+                    "type": "text",
+                    "required": 1,
+                    "default_value": ""
+                },
+                {
+                    "key": "field_milo_experience_note",
+                    "label": "Note",
+                    "name": "note",
+                    "type": "text",
+                    "instructions": "Optional bracket text, e.g. (Independent) or (Contract)",
+                    "default_value": ""
+                },
+                {
+                    "key": "field_milo_experience_role",
+                    "label": "Role / Title",
+                    "name": "role",
+                    "type": "text",
+                    "required": 1,
+                    "default_value": ""
+                },
+                {
+                    "key": "field_milo_experience_years",
+                    "label": "Years",
+                    "name": "years",
+                    "type": "text",
+                    "instructions": "e.g. 2023 \u2014 Now",
+                    "required": 1,
+                    "default_value": ""
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_type",
+                "operator": "==",
+                "value": "front_page"
+            }
+        ]
+    ],
+    "menu_order": 40,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true,
+    "show_in_rest": 0
+}

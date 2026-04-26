@@ -2,25 +2,47 @@
 /**
  * Section: Experience / Background
  *
- * Work-history timeline rows. Hardcoded PHP array as starter data
- * that mirrors the original HTML. Replace with WP_Query on
- * 'milo_experience' CPT when populated.
+ * ACF Repeater: milo_experience_items on Front Page.
+ * Falls back to hardcoded PHP array when ACF is absent or repeater is empty.
  *
  * @package MiloArden
  */
 
-// Section header — Editable from Customizer
+// Section header (Customizer)
 $eyebrow = get_theme_mod('milo_experience_eyebrow', 'Background');
 $heading = get_theme_mod('milo_experience_heading', "Where I've been.");
 
-// Starter data — replace with WP_Query loop on milo_experience CPT
-$experience = array(
-        array('company' => 'Field Studio', 'note' => '(Independent)', 'role' => 'Design Engineer · Lead', 'years' => '2023 — Now'),
-        array('company' => 'Ledger', 'note' => '', 'role' => 'Founding Designer', 'years' => '2022 — 2023'),
-        array('company' => 'Halftone', 'note' => '(Contract)', 'role' => 'Product &amp; Brand', 'years' => '2021 — 2022'),
-        array('company' => 'Mercy Accessibility Lab', 'note' => '', 'role' => 'Research Fellow', 'years' => '2020 — 2021'),
-        array('company' => 'Stripe', 'note' => '', 'role' => 'Front-End Engineer · Platform', 'years' => '2018 — 2020'),
+// ── ACF Front Page ID ────────────────────────────────────────
+$front_id = (int)get_option('page_on_front');
+
+// ── Hardcoded fallback data ──────────────────────────────────
+$fallback_experience = array(
+    array('company' => 'Field Studio', 'note' => '(Independent)', 'role' => 'Design Engineer · Lead', 'years' => '2023 — Now'),
+    array('company' => 'Ledger', 'note' => '', 'role' => 'Founding Designer', 'years' => '2022 — 2023'),
+    array('company' => 'Halftone', 'note' => '(Contract)', 'role' => 'Product &amp; Brand', 'years' => '2021 — 2022'),
+    array('company' => 'Mercy Accessibility Lab', 'note' => '', 'role' => 'Research Fellow', 'years' => '2020 — 2021'),
+    array('company' => 'Stripe', 'note' => '', 'role' => 'Front-End Engineer · Platform', 'years' => '2018 — 2020'),
 );
+
+// ── Build experience array: ACF → fallback ───────────────────
+$use_acf = milo_acf_has_rows('milo_experience_items', $front_id);
+$experience = array();
+
+if ($use_acf) {
+  while (have_rows('milo_experience_items', $front_id)):
+    the_row();
+    $experience[] = array(
+      'company' => get_sub_field('company'),
+      'note' => get_sub_field('note'),
+      'role' => get_sub_field('role'),
+      'years' => get_sub_field('years'),
+    );
+  endwhile;
+}
+
+if (empty($experience)) {
+  $experience = $fallback_experience;
+}
 ?>
 
 <section class="section tight">
@@ -30,30 +52,6 @@ $experience = array(
   </div>
 
   <div class="exp-wrap">
-
-    <?php
-/**
- * Dynamic loop — uncomment when milo_experience CPT has data:
- *
- * $eq = new WP_Query( array(
- *     'post_type'      => 'milo_experience',
- *     'posts_per_page' => -1,
- *     'orderby'        => 'menu_order',
- *     'order'          => 'ASC',
- * ) );
- * if ( $eq->have_posts() ) :
- *   while ( $eq->have_posts() ) : $eq->the_post();
- *     $company = get_the_title();
- *     $note    = get_post_meta( get_the_ID(), 'milo_exp_note', true );
- *     $role    = get_post_meta( get_the_ID(), 'milo_exp_role', true );
- *     $years   = get_post_meta( get_the_ID(), 'milo_exp_years', true );
- *     // ... render .exp-row ...
- *   endwhile;
- *   wp_reset_postdata();
- * endif;
- */
-?>
-
     <?php foreach ($experience as $entry): ?>
       <div class="exp-row reveal">
         <div class="co">
@@ -61,13 +59,12 @@ $experience = array(
           <?php if (!empty($entry['note'])): ?>
             <span class="note"><?php echo esc_html($entry['note']); ?></span>
           <?php
-    endif; ?>
+  endif; ?>
         </div>
         <div class="role"><?php echo wp_kses_post($entry['role']); ?></div>
         <div class="yr"><?php echo esc_html($entry['years']); ?></div>
       </div>
     <?php
 endforeach; ?>
-
   </div>
 </section>

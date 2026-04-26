@@ -1,0 +1,54 @@
+{
+    "key": "group_milo_services",
+    "title": "Milo — Services / What I Build",
+    "fields": [
+        {
+            "key": "field_milo_services_quote",
+            "label": "Quote Text",
+            "name": "milo_services_quote",
+            "type": "textarea",
+            "instructions": "The featured pull-quote displayed on the dark card.",
+            "default_value": "\"The kind of collaborator you build a company around.\"",
+            "rows": 3,
+            "new_lines": ""
+        },
+        {
+            "key": "field_milo_services_quote_desc",
+            "label": "Quote Description",
+            "name": "milo_services_quote_desc",
+            "type": "text",
+            "instructions": "Subtext below the quote.",
+            "default_value": "Seven years of work across startups, labs, and agencies \u2014 shipped, documented, and loved."
+        },
+        {
+            "key": "field_milo_services_quote_name",
+            "label": "Quote Author Name",
+            "name": "milo_services_quote_name",
+            "type": "text",
+            "default_value": "Elena Vasquez"
+        },
+        {
+            "key": "field_milo_services_quote_role",
+            "label": "Quote Author Role",
+            "name": "milo_services_quote_role",
+            "type": "text",
+            "default_value": "Founder, Ledger"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_type",
+                "operator": "==",
+                "value": "front_page"
+            }
+        ]
+    ],
+    "menu_order": 10,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true,
+    "show_in_rest": 0
+}

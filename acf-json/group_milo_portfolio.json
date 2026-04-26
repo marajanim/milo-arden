@@ -1,0 +1,132 @@
+{
+    "key": "group_milo_portfolio",
+    "title": "Milo — Portfolio / Selected Work",
+    "fields": [
+        {
+            "key": "field_milo_portfolio_items",
+            "label": "Project Cards",
+            "name": "milo_portfolio_items",
+            "type": "repeater",
+            "instructions": "Add or reorder project cards. Leave empty to use built-in defaults.",
+            "min": 0,
+            "max": 12,
+            "layout": "block",
+            "button_label": "Add Project",
+            "sub_fields": [
+                {
+                    "key": "field_milo_portfolio_visual_type",
+                    "label": "Visual Type",
+                    "name": "visual_type",
+                    "type": "select",
+                    "instructions": "Choose the CSS mockup type for the card visual.",
+                    "choices": {
+                        "dashboard": "Dashboard (bar chart)",
+                        "inbox": "Inbox (ticket rows)",
+                        "editor": "Editor (text page)",
+                        "brand": "Brand (large type)",
+                        "phone": "Phone (mobile screen)",
+                        "archive": "Archive link (no visual)"
+                    },
+                    "default_value": "dashboard",
+                    "allow_null": 0,
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_milo_portfolio_brand_text",
+                    "label": "Brand Visual Text",
+                    "name": "brand_text",
+                    "type": "text",
+                    "instructions": "Only used when Visual Type = Brand. The large display word.",
+                    "default_value": "",
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_milo_portfolio_visual_type",
+                                "operator": "==",
+                                "value": "brand"
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "key": "field_milo_portfolio_brand_accent",
+                    "label": "Brand Accent Letter",
+                    "name": "brand_accent_letter",
+                    "type": "text",
+                    "instructions": "The highlighted letter inside the brand text (shown in accent color).",
+                    "default_value": "",
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_milo_portfolio_visual_type",
+                                "operator": "==",
+                                "value": "brand"
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "key": "field_milo_portfolio_title",
+                    "label": "Project Title",
+                    "name": "title",
+                    "type": "text",
+                    "required": 1,
+                    "default_value": ""
+                },
+                {
+                    "key": "field_milo_portfolio_year",
+                    "label": "Year",
+                    "name": "year",
+                    "type": "text",
+                    "default_value": ""
+                },
+                {
+                    "key": "field_milo_portfolio_description",
+                    "label": "Description",
+                    "name": "description",
+                    "type": "textarea",
+                    "rows": 2,
+                    "new_lines": "",
+                    "default_value": ""
+                },
+                {
+                    "key": "field_milo_portfolio_tags",
+                    "label": "Tags",
+                    "name": "tags",
+                    "type": "text",
+                    "instructions": "Comma-separated, e.g. Product, UI System, Motion",
+                    "default_value": ""
+                },
+                {
+                    "key": "field_milo_portfolio_delay",
+                    "label": "Animation Delay",
+                    "name": "delay_class",
+                    "type": "select",
+                    "choices": {
+                        "": "None",
+                        "d1": "Stagger 1 (0.08s)"
+                    },
+                    "default_value": "",
+                    "allow_null": 0,
+                    "return_format": "value"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_type",
+                "operator": "==",
+                "value": "front_page"
+            }
+        ]
+    ],
+    "menu_order": 20,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true,
+    "show_in_rest": 0
+}
