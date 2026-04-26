@@ -28,6 +28,9 @@ class Milo_Demo_Importer
     /** @var string Option key that stores IDs of imported content for undo. */
     const UNDO_KEY = 'milo_demo_imported_ids';
 
+    /** @var array Runtime map of original filename => new attachment ID. */
+    private $attachment_map = array();
+
     /* ================================================================
      BOOTSTRAP
      ================================================================ */
@@ -219,6 +222,25 @@ class Milo_Demo_Importer
             if (!empty($result['ids'])) {
                 $ids = array_merge($ids, $result['ids']);
             }
+            if ($result['error']) {
+                $errors++;
+            }
+        }
+
+        // Step 1b — Local images (always runs when content is selected)
+        if (in_array('content', $steps, true)) {
+            $result = $this->import_images();
+            $log = array_merge($log, $result['log']);
+            if (!empty($result['ids'])) {
+                $ids = array_merge($ids, $result['ids']);
+            }
+            if ($result['error']) {
+                $errors++;
+            }
+
+            // Step 1c — Set featured images
+            $result = $this->set_featured_images();
+            $log = array_merge($log, $result['log']);
             if ($result['error']) {
                 $errors++;
             }
@@ -525,6 +547,181 @@ class Milo_Demo_Importer
     }
 
     /* ================================================================
+     STEP 1b — LOCAL IMAGE IMPORT
+     ================================================================ */
+
+    /**
+     * Import demo images from the bundled demo/images/ folder into
+     * the WordPress media library. Builds $this->attachment_map
+     * for later use by featured-image and Customizer logo steps.
+     */
+    private function import_images()
+    {
+        $log = array();
+        $ids = array();
+        $error = false;
+        $dir = $this->demo_dir . '/images';
+
+        if (!is_dir($dir)) {
+            $log[] = array('type' => 'info', 'msg' => __('No demo/images/ folder found — skipping local image import.', 'milo-arden'));
+            return array('log' => $log, 'ids' => $ids, 'error' => false);
+        }
+
+        require_once ABSPATH . 'wp-admin/includes/image.php';
+        require_once ABSPATH . 'wp-admin/includes/file.php';
+        require_once ABSPATH . 'wp-admin/includes/media.php';
+
+        $log[] = array('type' => 'info', 'msg' => __('Importing demo images…', 'milo-arden'));
+
+        $files = glob($dir . '/*.{png,jpg,jpeg,webp,svg,gif}', GLOB_BRACE);
+        if (empty($files)) {
+            $log[] = array('type' => 'info', 'msg' => __('No image files found in demo/images/.', 'milo-arden'));
+            return array('log' => $log, 'ids' => $ids, 'error' => false);
+        }
+
+        $upload_dir = wp_upload_dir();
+
+        foreach ($files as $source_path) {
+            $filename = basename($source_path);
+
+            // Skip if an attachment with this filename already exists
+            $existing = $this->get_demo_attachment_id($filename);
+            if ($existing) {
+                $this->attachment_map[$filename] = $existing;
+                $ids[] = $existing;
+                $log[] = array('type' => 'info', 'msg' => sprintf(__('Skipped (exists): %s', 'milo-arden'), $filename));
+                continue;
+            }
+
+            // Copy file to uploads directory
+            $dest_path = $upload_dir['path'] . '/' . $filename;
+            if (!copy($source_path, $dest_path)) {
+                $log[] = array('type' => 'err', 'msg' => sprintf(__('Could not copy: %s', 'milo-arden'), $filename));
+                $error = true;
+                continue;
+            }
+
+            // Detect MIME type
+            $mime = wp_check_filetype($filename);
+            if (empty($mime['type'])) {
+                $mime['type'] = 'image/png';
+            }
+
+            // Build attachment data
+            $attachment_data = array(
+                'post_mime_type' => $mime['type'],
+                'post_title' => sanitize_file_name(pathinfo($filename, PATHINFO_FILENAME)),
+                'post_content' => '',
+                'post_status' => 'inherit',
+            );
+
+            $attach_id = wp_insert_attachment($attachment_data, $dest_path);
+
+            if (is_wp_error($attach_id)) {
+                $log[] = array('type' => 'err', 'msg' => sprintf(__('Failed: %s — %s', 'milo-arden'), $filename, $attach_id->get_error_message()));
+                $error = true;
+                continue;
+            }
+
+            // Generate thumbnails / metadata
+            $metadata = wp_generate_attachment_metadata($attach_id, $dest_path);
+            wp_update_attachment_metadata($attach_id, $metadata);
+
+            $this->attachment_map[$filename] = $attach_id;
+            $ids[] = $attach_id;
+
+            $log[] = array('type' => 'ok', 'msg' => sprintf(__('Image: %s → ID %d', 'milo-arden'), $filename, $attach_id));
+        }
+
+        $log[] = array('type' => 'ok', 'msg' => sprintf(__('%d images imported.', 'milo-arden'), count($ids)));
+
+        return array('log' => $log, 'ids' => $ids, 'error' => $error);
+    }
+
+    /**
+     * Look up an attachment ID by its original demo filename.
+     * Checks the runtime map first, then falls back to a DB query.
+     *
+     * @param  string   $filename  Original filename (e.g. "logo.png")
+     * @return int|false Attachment ID or false if not found.
+     */
+    public function get_demo_attachment_id($filename)
+    {
+        // 1. Check runtime map
+        if (isset($this->attachment_map[$filename])) {
+            return $this->attachment_map[$filename];
+        }
+
+        // 2. Query by filename in _wp_attached_file meta
+        global $wpdb;
+        $like = '%' . $wpdb->esc_like($filename);
+        $id = $wpdb->get_var($wpdb->prepare(
+            "SELECT post_id FROM {$wpdb->postmeta}
+             WHERE meta_key = '_wp_attached_file'
+               AND meta_value LIKE %s
+             LIMIT 1",
+            $like
+        ));
+
+        if ($id) {
+            $this->attachment_map[$filename] = (int)$id;
+            return (int)$id;
+        }
+
+        return false;
+    }
+
+    /* ================================================================
+     STEP 1c — FEATURED IMAGES
+     ================================================================ */
+
+    /**
+     * Assign featured images (post thumbnails) to imported posts & pages
+     * using the attachment map built by import_images().
+     */
+    private function set_featured_images()
+    {
+        $log = array();
+        $error = false;
+
+        // Map: post/page slug => demo image filename
+        $thumbnail_map = array(
+            // Blog posts
+            'why-i-design-in-the-browser' => 'post-design-browser.png',
+            'building-calm-software' => 'post-calm-software.png',
+            'practical-guide-to-design-tokens' => 'post-design-tokens.png',
+            'accessibility-is-a-design-skill' => 'post-accessibility.png',
+        );
+
+        $log[] = array('type' => 'info', 'msg' => __('Assigning featured images…', 'milo-arden'));
+        $count = 0;
+
+        foreach ($thumbnail_map as $slug => $image_file) {
+            // Find the post/page by slug
+            $post = get_page_by_path($slug, OBJECT, array('post', 'page'));
+            if (!$post) {
+                $log[] = array('type' => 'info', 'msg' => sprintf(__('Post not found for slug: %s', 'milo-arden'), $slug));
+                continue;
+            }
+
+            // Find the attachment
+            $attach_id = $this->get_demo_attachment_id($image_file);
+            if (!$attach_id) {
+                $log[] = array('type' => 'info', 'msg' => sprintf(__('Image not found: %s', 'milo-arden'), $image_file));
+                continue;
+            }
+
+            set_post_thumbnail($post->ID, $attach_id);
+            $count++;
+            $log[] = array('type' => 'ok', 'msg' => sprintf(__('Thumbnail: %s → %s', 'milo-arden'), $image_file, $post->post_title));
+        }
+
+        $log[] = array('type' => 'ok', 'msg' => sprintf(__('%d featured images assigned.', 'milo-arden'), $count));
+
+        return array('log' => $log, 'error' => $error);
+    }
+
+    /* ================================================================
      STEP 2 — WIDGETS
      ================================================================ */
 
@@ -613,22 +810,17 @@ class Milo_Demo_Importer
         $home_page = get_page_by_path('home');
         $blog_page = get_page_by_path('blog');
 
+        // Resolve logo attachment via the mapping system
+        $logo_attach_id = $this->get_demo_attachment_id('logo.png');
+
         $replacements = array(
             '{{home_page_id}}' => $home_page ? $home_page->ID : 0,
             '{{blog_page_id}}' => $blog_page ? $blog_page->ID : 0,
-            '{{logo_attachment_id}}' => 0, // Will be resolved if a logo attachment exists
+            '{{logo_attachment_id}}' => $logo_attach_id ? $logo_attach_id : 0,
         );
 
-        // Try to find the logo attachment
-        $logo_args = array(
-            'post_type' => 'attachment',
-            'post_status' => 'inherit',
-            'posts_per_page' => 1,
-            's' => 'logo',
-        );
-        $logo_query = new WP_Query($logo_args);
-        if ($logo_query->have_posts()) {
-            $replacements['{{logo_attachment_id}}'] = $logo_query->posts[0]->ID;
+        if ($logo_attach_id) {
+            $log[] = array('type' => 'ok', 'msg' => sprintf(__('Custom logo → attachment ID %d', 'milo-arden'), $logo_attach_id));
         }
 
         $count = 0;
