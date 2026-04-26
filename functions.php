@@ -21,6 +21,7 @@ define('MILO_URI', get_template_directory_uri());
 
 /* Load inc files */
 require_once MILO_DIR . '/inc/class-nav-walker.php';
+require_once MILO_DIR . '/inc/demo-importer.php';
 
 
 /* =============================================================
