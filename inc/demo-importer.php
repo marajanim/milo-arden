@@ -215,85 +215,93 @@ class Milo_Demo_Importer
             $ids = array();
         }
 
-        // Step 1 — Content (XML)
-        if (in_array('content', $steps, true)) {
-            $result = $this->import_content();
-            $log = array_merge($log, $result['log']);
-            if (!empty($result['ids'])) {
-                $ids = array_merge($ids, $result['ids']);
+        try {
+
+            // Step 1 — Content (XML)
+            if (in_array('content', $steps, true)) {
+                $result = $this->import_content();
+                $log = array_merge($log, $result['log']);
+                if (!empty($result['ids'])) {
+                    $ids = array_merge($ids, $result['ids']);
+                }
+                if ($result['error']) {
+                    $errors++;
+                }
             }
-            if ($result['error']) {
-                $errors++;
+
+            // Step 1b — Local images (always runs when content is selected)
+            if (in_array('content', $steps, true)) {
+                $result = $this->import_images();
+                $log = array_merge($log, $result['log']);
+                if (!empty($result['ids'])) {
+                    $ids = array_merge($ids, $result['ids']);
+                }
+                if ($result['error']) {
+                    $errors++;
+                }
+
+                // Step 1c — Set featured images
+                $result = $this->set_featured_images();
+                $log = array_merge($log, $result['log']);
+                if ($result['error']) {
+                    $errors++;
+                }
             }
+
+            // Step 2 — Widgets
+            if (in_array('widgets', $steps, true)) {
+                $result = $this->import_widgets();
+                $log = array_merge($log, $result['log']);
+                if ($result['error']) {
+                    $errors++;
+                }
+            }
+
+            // Step 3 — Customizer
+            if (in_array('customizer', $steps, true)) {
+                $result = $this->import_customizer();
+                $log = array_merge($log, $result['log']);
+                if ($result['error']) {
+                    $errors++;
+                }
+            }
+
+            // Step 4 — ACF Fields
+            if (in_array('acf', $steps, true)) {
+                $result = $this->import_acf();
+                $log = array_merge($log, $result['log']);
+                if ($result['error']) {
+                    $errors++;
+                }
+            }
+
+            // Step 5 — Menus
+            if (in_array('menus', $steps, true)) {
+                $result = $this->assign_menus();
+                $log = array_merge($log, $result['log']);
+                if ($result['error']) {
+                    $errors++;
+                }
+            }
+
+            // Step 6 — Homepage settings
+            if (in_array('homepage', $steps, true)) {
+                $result = $this->set_homepage();
+                $log = array_merge($log, $result['log']);
+                if ($result['error']) {
+                    $errors++;
+                }
+            }
+
+            // Flush rewrite rules
+            flush_rewrite_rules();
+            $log[] = array('type' => 'ok', 'msg' => __('Rewrite rules flushed.', 'milo-arden'));
+
         }
-
-        // Step 1b — Local images (always runs when content is selected)
-        if (in_array('content', $steps, true)) {
-            $result = $this->import_images();
-            $log = array_merge($log, $result['log']);
-            if (!empty($result['ids'])) {
-                $ids = array_merge($ids, $result['ids']);
-            }
-            if ($result['error']) {
-                $errors++;
-            }
-
-            // Step 1c — Set featured images
-            $result = $this->set_featured_images();
-            $log = array_merge($log, $result['log']);
-            if ($result['error']) {
-                $errors++;
-            }
+        catch (\Throwable $e) {
+            $log[] = array('type' => 'err', 'msg' => sprintf(__('PHP Error: %s in %s:%d', 'milo-arden'), $e->getMessage(), basename($e->getFile()), $e->getLine()));
+            $errors++;
         }
-
-        // Step 2 — Widgets
-        if (in_array('widgets', $steps, true)) {
-            $result = $this->import_widgets();
-            $log = array_merge($log, $result['log']);
-            if ($result['error']) {
-                $errors++;
-            }
-        }
-
-        // Step 3 — Customizer
-        if (in_array('customizer', $steps, true)) {
-            $result = $this->import_customizer();
-            $log = array_merge($log, $result['log']);
-            if ($result['error']) {
-                $errors++;
-            }
-        }
-
-        // Step 4 — ACF Fields
-        if (in_array('acf', $steps, true)) {
-            $result = $this->import_acf();
-            $log = array_merge($log, $result['log']);
-            if ($result['error']) {
-                $errors++;
-            }
-        }
-
-        // Step 5 — Menus
-        if (in_array('menus', $steps, true)) {
-            $result = $this->assign_menus();
-            $log = array_merge($log, $result['log']);
-            if ($result['error']) {
-                $errors++;
-            }
-        }
-
-        // Step 6 — Homepage settings
-        if (in_array('homepage', $steps, true)) {
-            $result = $this->set_homepage();
-            $log = array_merge($log, $result['log']);
-            if ($result['error']) {
-                $errors++;
-            }
-        }
-
-        // Flush rewrite rules
-        flush_rewrite_rules();
-        $log[] = array('type' => 'ok', 'msg' => __('Rewrite rules flushed.', 'milo-arden'));
 
         // Save IDs for undo
         update_option(self::UNDO_KEY, $ids);
@@ -378,7 +386,12 @@ class Milo_Demo_Importer
     {
         include_once ABSPATH . 'wp-admin/includes/plugin-install.php';
         include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
-        include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader-skin.php';
+
+        // WP_Ajax_Upgrader_Skin lives in its own file (not class-wp-upgrader-skin.php)
+        $ajax_skin_file = ABSPATH . 'wp-admin/includes/class-wp-ajax-upgrader-skin.php';
+        if (file_exists($ajax_skin_file)) {
+            include_once $ajax_skin_file;
+        }
 
         $api = plugins_api('plugin_information', array(
             'slug' => 'wordpress-importer',
@@ -389,7 +402,17 @@ class Milo_Demo_Importer
             return $api;
         }
 
-        $skin = new WP_Ajax_Upgrader_Skin();
+        // Use WP_Ajax_Upgrader_Skin if available, fall back to Automatic_Upgrader_Skin
+        if (class_exists('WP_Ajax_Upgrader_Skin')) {
+            $skin = new WP_Ajax_Upgrader_Skin();
+        }
+        elseif (class_exists('Automatic_Upgrader_Skin')) {
+            $skin = new Automatic_Upgrader_Skin();
+        }
+        else {
+            return new WP_Error('skin_missing', __('No compatible upgrader skin class found.', 'milo-arden'));
+        }
+
         $upgrader = new Plugin_Upgrader($skin);
         $result = $upgrader->install($api->download_link);
 
@@ -573,7 +596,15 @@ class Milo_Demo_Importer
 
         $log[] = array('type' => 'info', 'msg' => __('Importing demo images…', 'milo-arden'));
 
-        $files = glob($dir . '/*.{png,jpg,jpeg,webp,svg,gif}', GLOB_BRACE);
+        // Use scandir instead of glob(GLOB_BRACE) — GLOB_BRACE is undefined on some servers
+        $allowed_ext = array('png', 'jpg', 'jpeg', 'webp', 'svg', 'gif');
+        $files = array();
+        foreach (scandir($dir) as $f) {
+            $ext = strtolower(pathinfo($f, PATHINFO_EXTENSION));
+            if (in_array($ext, $allowed_ext, true)) {
+                $files[] = $dir . '/' . $f;
+            }
+        }
         if (empty($files)) {
             $log[] = array('type' => 'info', 'msg' => __('No image files found in demo/images/.', 'milo-arden'));
             return array('log' => $log, 'ids' => $ids, 'error' => false);
@@ -764,7 +795,8 @@ class Milo_Demo_Importer
                 }
 
                 // Find next available instance number
-                $next = empty($all_instances) ? 1 : max(array_keys(array_filter($all_instances, 'is_array'))) + 1;
+                $filtered_keys = array_keys(array_filter($all_instances, 'is_array'));
+                $next = empty($filtered_keys) ? 1 : max($filtered_keys) + 1;
 
                 $all_instances[$next] = $widget_data;
                 update_option('widget_' . $widget_type, $all_instances);
